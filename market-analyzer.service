@@ -1,0 +1,20 @@
+[Unit]
+Description=Market Analyzer - Local Trading Signal System
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/market-analyzer
+ExecStart=/home/pi/market-analyzer/venv/bin/python /home/pi/market-analyzer/main.py
+Restart=always
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+Environment="PATH=/home/pi/market-analyzer/venv/bin"
+Environment="TELEGRAM_BOT_TOKEN=your_token_here"
+Environment="TELEGRAM_CHAT_ID=your_chat_id_here"
+
+[Install]
+WantedBy=multi-user.target
